@@ -39,8 +39,11 @@ class Speedometer
     length = `stty`
     length = length.split.last.to_i
     print "\r"
+    STDOUT.flush
     print "#{' ' * length}"
+    STDOUT.flush
     print "\r"
+    STDOUT.flush
   end
 
   def display
@@ -54,6 +57,7 @@ class Speedometer
       speed = speed / 1024
     end
     print "#{speed.round(2)}#{@units}/s"
+    STDOUT.flush
     sleep @refresh_time.to_f / 1000
   end
 

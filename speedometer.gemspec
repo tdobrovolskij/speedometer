@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'speedometer'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2013-11-18'
   s.summary     = "speedometer"
   s.description = "Library to track and display bandwith usage inside the application"

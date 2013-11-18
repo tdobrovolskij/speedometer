@@ -20,4 +20,5 @@ Methods:
 
 HISTORY
 =======
+* 0.0.2 - Forcing STDOUT.flush after every action
 * 0.0.1 - Initial public release
