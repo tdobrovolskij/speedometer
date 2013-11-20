@@ -28,6 +28,7 @@ class Speedometer
     @start_time = Time.now
     @active = true
     @refresh_time = 1000
+    @msg_lock = Mutex.new
     if ["KB","MB","GB"].include?(units)
       @units = units
     else
@@ -36,14 +37,16 @@ class Speedometer
   end
 
   def clear
-    length = `stty`
-    length = length.split.last.to_i
-    print "\r"
-    STDOUT.flush
-    print "#{' ' * length}"
-    STDOUT.flush
-    print "\r"
-    STDOUT.flush
+    @msg_lock.synchronize do
+      length = `tput cols`
+      length = length.split.last.to_i
+      print "\r"
+      STDOUT.flush
+      print "#{' ' * length}"
+      STDOUT.flush
+      print "\r"
+      STDOUT.flush
+    end
   end
 
   def display
@@ -56,14 +59,18 @@ class Speedometer
     if @units == "GB"
       speed = speed / 1024
     end
-    print "#{speed.round(2)}#{@units}/s"
-    STDOUT.flush
+    @msg_lock.synchronize do
+      print "#{speed.round(2)}#{@units}/s"
+      STDOUT.flush
+    end
     sleep @refresh_time.to_f / 1000
   end
 
   def log(msg)
     clear
-    puts msg
+    @msg_lock.synchronize do
+      puts msg
+    end
     display
   end
 end
