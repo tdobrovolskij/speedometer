@@ -17,6 +17,8 @@
 ########################################################################
 # = Methods
 # * new - accepts units in KB/MB/GB
+# * start - start displaying upload speed
+# * stop - stops displaying upload rate
 # * display - displays upload speed
 # * log(message) - you need to use this instead of puts
 ########################################################################
@@ -72,5 +74,17 @@ class Speedometer
       puts msg
     end
     display
+  end
+
+  def start
+    Thread.new {
+      while @active
+	self.display
+      end
+    }
+  end
+
+  def stop
+    @active = false
   end
 end
