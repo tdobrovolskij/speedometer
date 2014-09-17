@@ -27,7 +27,6 @@ class Speedometer
   attr_accessor :uploaded, :refresh_time, :active
 
   def initialize(units="MB")
-    @start_time = Time.now
     @active = true
     @refresh_time = 1000
     @msg_lock = Mutex.new
@@ -77,14 +76,19 @@ class Speedometer
   end
 
   def start
-    Thread.new {
-      while @active
-	self.display
-      end
-    }
+    @start_time = Time.now if @start_time.nil?
+    if !@started
+      Thread.new {
+        while @active
+	  self.display
+        end
+      }
+      @started = true
+    end
   end
 
   def stop
     @active = false
+    @started = false
   end
 end

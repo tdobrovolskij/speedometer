@@ -22,6 +22,7 @@ Methods:
 
 HISTORY
 =======
+* 0.0.5 - Improved logic. Start possible only once.
 * 0.0.4 - Added start/stop methods
 * 0.0.3 - Basic thread safety added
 * 0.0.2 - Forcing STDOUT.flush after every action
