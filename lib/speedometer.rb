@@ -72,7 +72,9 @@ class Speedometer
     @msg_lock.synchronize do
       puts msg
     end
-    display
+    if @started
+      display
+    end
   end
 
   def start
