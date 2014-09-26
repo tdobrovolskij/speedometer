@@ -22,6 +22,7 @@ Methods:
 
 HISTORY
 =======
+* 0.1.1 - Specified ruby version.
 * 0.1.0 - Added progressbar feature. Be careful: upgrade can break code.
 * 0.0.5 - Improved logic. Start possible only once.
 * 0.0.4 - Added start/stop methods
