@@ -59,10 +59,14 @@ class Speedometer
     end
   end
 
-  def log(msg)
+  def log(msg, **opts)
     clear
     @msg_lock.synchronize do
-      puts msg
+      if opts[:stderr]
+	STDERR.puts msg
+      else
+        puts msg
+      end
     end
     if @started
       display
