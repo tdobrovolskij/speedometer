@@ -1,5 +1,6 @@
 Speedometer
 ===========
+[![Gem Version](https://badge.fury.io/rb/speedometer.svg)](http://badge.fury.io/rb/speedometer)
 
 Simple library used to track,calculate and display upload speed of an application.
 
