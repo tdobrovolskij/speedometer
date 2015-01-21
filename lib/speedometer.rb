@@ -78,7 +78,8 @@ class Speedometer
     if !@started
       @t = Thread.new {
         while @active || @work_to_do
-	  display
+          display
+          sleep @refresh_time.to_f / 1000
         end
       }
       @started = true
@@ -131,7 +132,6 @@ class Speedometer
       print progress(speed.round(2).to_s.length + 4) if (@to_upload > 0) && @progressbar && (@done > 0)
       STDOUT.flush
     end
-    sleep @refresh_time.to_f / 1000
   end
 
 end

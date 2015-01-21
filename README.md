@@ -23,7 +23,8 @@ Methods:
 
 HISTORY
 =======
-* 0.1.2 - log method supports stderr output now.
+* 0.1.3 - Less CPU will be consumed now.
+* 0.1.2 - Log method supports stderr output now.
 * 0.1.1 - Specified ruby version.
 * 0.1.0 - Added progressbar feature. Be careful: upgrade can break code.
 * 0.0.5 - Improved logic. Start possible only once.
