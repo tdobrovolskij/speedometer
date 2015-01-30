@@ -21,6 +21,10 @@ Methods:
 * done(bytesize) - increments uploaded byte counter for progressbar
 * log(message) - you need to use this instead of puts
 
+CREDITS
+=======
+* [Zachary "Zrp200" Perlmutter](https://github.com/Zrp200) for his [patch](https://github.com/tdobrovolskij/speedometer/pull/1).
+
 HISTORY
 =======
 * 0.1.3 - Less CPU will be consumed now.
