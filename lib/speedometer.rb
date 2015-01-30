@@ -27,15 +27,9 @@ class Speedometer
   attr_accessor :uploaded, :refresh_time, :active, :to_upload
 
   def initialize(**options)
-    units = options[:units]
-    units = 'MB' if units.nil?
-    if options[:progressbar]
-      @progressbar = true
-    else
-      @progressbar = false
-    end
-    @to_upload = 0
-    @done = 0
+    units = units.nil? ? 'MB' : options[:units]
+    @progressbar = options[:progressbar] ? true : false
+    @to_upload, @done = 0
     @cols = `tput cols`.split.last.to_i
     @active = true
     @work_to_do = false
@@ -74,8 +68,8 @@ class Speedometer
   end
 
   def start
-    @start_time = Time.now if @start_time.nil?
-    if !@started
+    @start_time ||= Time.now
+    unless @started
       @t = Thread.new {
         while @active || @work_to_do
           display
@@ -122,7 +116,7 @@ class Speedometer
     time = Time.now
     speed = (uploaded.to_f / (time - @start_time)) / 1024
     if @units == "MB" or @units == "GB"
-      speed = speed / 1024
+      speed /= 1024
     end
     if @units == "GB"
       speed = speed / 1024
